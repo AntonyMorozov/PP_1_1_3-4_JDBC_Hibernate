@@ -28,6 +28,7 @@ public class UserDaoJDBCImpl implements UserDao {
         try (Connection connection = Util.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sqlCreateUserTable)) {
             preparedStatement.executeUpdate();
+            System.out.println("Таблица создана");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -37,6 +38,7 @@ public class UserDaoJDBCImpl implements UserDao {
         try (Connection connection = Util.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sqlDropUserTable)) {
             preparedStatement.executeUpdate();
+            System.out.println("Таблица удалена");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -49,6 +51,7 @@ public class UserDaoJDBCImpl implements UserDao {
             preparedStatement.setString(2, lastName);
             preparedStatement.setByte(3, age);
             preparedStatement.executeUpdate();
+            System.out.printf("User с именем – %s добавлен в базу данных %n", name);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -59,6 +62,7 @@ public class UserDaoJDBCImpl implements UserDao {
              PreparedStatement preparedStatement = connection.prepareStatement(sqlRemoveUserTable)) {
             preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
+            System.out.println("User с id " + id + " удален");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -87,6 +91,7 @@ public class UserDaoJDBCImpl implements UserDao {
         try (Connection connection = Util.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sqlClearUserTable)) {
             preparedStatement.executeUpdate();
+            System.out.println("Таблица очищена");
         } catch (SQLException e) {
             e.printStackTrace();
         }

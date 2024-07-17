@@ -5,6 +5,7 @@ import jm.task.core.jdbc.service.UserServiceImpl;
 import jm.task.core.jdbc.util.Util;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -16,12 +17,17 @@ public class Main {
         User user3 = new User("Name3", "LastName3", (byte) 31);
         User user4 = new User("Name4", "LastName4", (byte) 38);
 
-        for (User user : Arrays.asList(user1, user2, user3, user4)) {
-            userService.saveUser(user.getName(), user.getLastName(), user.getAge());
-            System.out.printf("User с именем – %s добавлен в базу данных %n", user.getName());
+        userService.saveUser(user1.getName(), user1.getLastName(), user1.getAge());
+        userService.saveUser(user2.getName(), user2.getLastName(), user2.getAge());
+        userService.saveUser(user3.getName(), user3.getLastName(), user3.getAge());
+        userService.saveUser(user4.getName(), user4.getLastName(), user4.getAge());
+
+        List<User> userList = userService.getAllUsers();
+
+        for (User user : userList) {
+            System.out.println(user.toString());
         }
 
-        System.out.println(userService.getAllUsers());
         userService.cleanUsersTable();
         userService.dropUsersTable();
     }
